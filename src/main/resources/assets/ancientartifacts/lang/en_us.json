@@ -1,0 +1,51 @@
+{
+    "item.ancientartifacts.warden_heart": "Warden's Heart",
+    "item.ancientartifacts.ender_rod": "Ender Rod",
+    "item.ancientartifacts.mycelium_dust": "Mycelium Dust",
+    "item.ancientartifacts.black_ice": "Black Ice",
+    "item.ancientartifacts.red_ice": "Red Ice",
+    "item.ancientartifacts.nether_grass": "Nether Grass",
+    "item.ancientartifacts.ochre_firefly_bud": "Ochre Firefly Bud",
+    "item.ancientartifacts.verdant_firefly_bud": "Verdant Firefly Bud",
+    "item.ancientartifacts.pearlescent_firefly_bud": "Pearlescent Firefly Bud",
+    "item.ancientartifacts.firefly_orb": "Firefly Orb",
+    "item.ancientartifacts.evoker_key": "Evoker's Key",
+    "item.ancientartifacts.elder_guardian_scales": "Elder Guardian Scales",
+    "item.ancientartifacts.end_staff": "End Staff",
+    "item.ancientartifacts.ankh_pendant": "Ankh Pendant",
+    "item.ancientartifacts.orb_infinium": "Orb of Infinium",
+    "item.ancientartifacts.dragon_fossil": "Dragon Fossil",
+
+
+    "block.ancientartifacts.nender_brick": "Nender Brick",
+    "block.ancientartifacts.chachapoyan_idol": "§eChachapoyan Idol",
+    "block.ancientartifacts.gilded_plate": "Gilded Plate",
+    "block.ancientartifacts.dragon_pedestal": "§eDragon Pedestal",
+    "block.ancientartifacts.ether_lever": "§eEther Lever",
+    "block.ancientartifacts.totem_of_order": "§eTotem of Order",
+    "block.ancientartifacts.totem_of_chaos": "§eTotem of Chaos",
+    "block.ancientartifacts.copper_wire": "Copper Wire",
+
+
+    "item.minecraft.potion.effect.elixir_base_i": "Elixir Base I",
+    "item.minecraft.splash_potion.effect.elixir_base_i": "Splash Elixir Base I",
+    "item.minecraft.lingering_potion.effect.elixir_base_i": "Lingering Elixir Base I",
+    "item.minecraft.potion.effect.elixir_base_ii": "Elixir Base II",
+    "item.minecraft.splash_potion.effect.elixir_base_ii": "Splash Elixir Base II",
+    "item.minecraft.lingering_potion.effect.elixir_base_ii": "Lingering Elixir Base II",
+    "item.minecraft.potion.effect.elixir_base_iii": "Elixir Base III",
+    "item.minecraft.splash_potion.effect.elixir_base_iii": "Splash Elixir Base III",
+    "item.minecraft.lingering_potion.effect.elixir_base_iii": "Lingering Elixir Base III",
+    "item.minecraft.potion.effect.elixir_base_iv": "Elixir Base IV",
+    "item.minecraft.splash_potion.effect.elixir_base_iv": "Splash Elixir Base IV",
+    "item.minecraft.lingering_potion.effect.elixir_base_iv": "Lingering Elixir Base IV",
+    "item.minecraft.potion.effect.elixir_base_v": "Elixir Base V",
+    "item.minecraft.splash_potion.effect.elixir_base_v": "Splash Elixir Base V",
+    "item.minecraft.lingering_potion.effect.elixir_base_v": "Lingering Elixir Base V",
+    "item.minecraft.potion.effect.elixir_of_drake": "§eElixir of Drake",
+    "item.minecraft.splash_potion.effect.elixir_of_drake": "§eSplash Elixir of Drake",
+    "item.minecraft.lingering_potion.effect.elixir_of_drake": "§eLingering Elixir of Drake",
+
+    "itemGroup.ancientartifacts.dragon_pedestal": "Ancient Artifacts"
+
+}
