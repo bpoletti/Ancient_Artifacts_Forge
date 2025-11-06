@@ -1,2 +1,9 @@
-// 1.21.1	2025-11-05T16:07:25.3127641	Loot Tables
+// 1.21.1	2025-11-05T19:03:36.7704028	Loot Tables
+127aa94db80728b124a4fb1247cac290e4a88f2e data/ancientartifacts/loot_table/blocks/chachapoyan_idol.json
+178389d0923c5668c61eee59fafbf397bfb10ce0 data/ancientartifacts/loot_table/blocks/copper_wire.json
+55cb68669324bf385353f59780da118e117c38ba data/ancientartifacts/loot_table/blocks/dragon_pedestal.json
+92e3cc394b8a49559cebbb3e0e03db5a508a5fe7 data/ancientartifacts/loot_table/blocks/ether_lever.json
+8e7f73569074cc24e5a53f860a9c18770b0e66e7 data/ancientartifacts/loot_table/blocks/gilded_plate.json
 e8f22d63a218b0ac9fb377b18263b8f1ddffef12 data/ancientartifacts/loot_table/blocks/nender_brick.json
+2beaa318ce0ff54b7f060263f9bad2f051787c20 data/ancientartifacts/loot_table/blocks/totem_of_chaos.json
+6970389df78e4f738e5b05fa92808f894d86d132 data/ancientartifacts/loot_table/blocks/totem_of_order.json

@@ -2,6 +2,7 @@ package net.eagle.ancientartifacts;
 
 import com.mojang.logging.LogUtils;
 import net.eagle.ancientartifacts.block.ModBlocks;
+import net.eagle.ancientartifacts.item.ModCreativeModTabs;
 import net.eagle.ancientartifacts.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +38,8 @@ public class AncientArtifacts
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        ModCreativeModTabs.register(modEventBus);
+
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
@@ -55,13 +58,7 @@ public class AncientArtifacts
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.WARDEN_HEART);
-        }
 
-        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.NENDER_BRICK);
-        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

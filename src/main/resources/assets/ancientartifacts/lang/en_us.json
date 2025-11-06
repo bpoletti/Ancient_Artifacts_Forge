@@ -46,6 +46,6 @@
     "item.minecraft.splash_potion.effect.elixir_of_drake": "§eSplash Elixir of Drake",
     "item.minecraft.lingering_potion.effect.elixir_of_drake": "§eLingering Elixir of Drake",
 
-    "itemGroup.ancientartifacts.dragon_pedestal": "Ancient Artifacts"
+    "creativetab.ancientartifacts.ancient_artifacts": "Ancient Artifacts"
 
 }

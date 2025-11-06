@@ -3,12 +3,8 @@ package net.eagle.ancientartifacts.datagen;
 import net.eagle.ancientartifacts.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Map;
@@ -22,6 +18,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.NENDER_BRICK.get());
+        dropSelf(ModBlocks.CHACHAPOYAN_IDOL.get());
+        dropSelf(ModBlocks.COPPER_WIRE.get());
+        dropSelf(ModBlocks.DRAGON_PEDESTAL.get());
+        dropSelf(ModBlocks.ETHER_LEVER.get());
+        dropSelf(ModBlocks.GILDED_PLATE.get());
+        dropSelf(ModBlocks.TOTEM_OF_CHAOS.get());
+        dropSelf(ModBlocks.TOTEM_OF_ORDER.get());
     }
 
     @Override
