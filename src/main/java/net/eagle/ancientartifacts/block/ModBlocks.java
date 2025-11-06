@@ -1,6 +1,7 @@
 package net.eagle.ancientartifacts.block;
 
 import net.eagle.ancientartifacts.AncientArtifacts;
+import net.eagle.ancientartifacts.block.custom.*;
 import net.eagle.ancientartifacts.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,31 +24,31 @@ public class ModBlocks {
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> CHACHAPOYAN_IDOL = registerBlock("chachapoyan_idol",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new ChachapoyanIdol(BlockBehaviour.Properties.of()
                     .strength(3f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> GILDED_PLATE = registerBlock("gilded_plate",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new GildedPlate(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> DRAGON_PEDESTAL = registerBlock("dragon_pedestal",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new DragonPedestal(BlockBehaviour.Properties.of()
                     .strength(2f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> ETHER_LEVER = registerBlock("ether_lever",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new EtherLever(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> TOTEM_OF_ORDER = registerBlock("totem_of_order",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new TotemOrder(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> TOTEM_OF_CHAOS = registerBlock("totem_of_chaos",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new TotemChaos(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> COPPER_WIRE = registerBlock("copper_wire",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new CopperWire(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.COPPER)));
 
     private static <T extends  Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.eagle.ancientartifacts.block.ModBlocks;
 import net.eagle.ancientartifacts.item.ModCreativeModTabs;
 import net.eagle.ancientartifacts.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.eagle.ancientartifacts.potion.ModPotions;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -42,6 +42,7 @@ public class AncientArtifacts
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModPotions.POTIONS.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

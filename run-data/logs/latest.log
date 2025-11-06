@@ -1,25 +1,32 @@
-[05Nov2025 19:03:29.437] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\Brandon\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, ancientartifacts, --all, --output, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\generated\resources, --existing, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\main\resources]
-[05Nov2025 19:03:29.439] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.9+7-LTS-338
-[05Nov2025 19:03:29.439] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.9 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[05Nov2025 19:03:29.544] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
-[05Nov2025 19:03:29.650] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/Brandon/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
-[05Nov2025 19:03:30.562] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[05Nov2025 19:03:31.437] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\Brandon\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, ancientartifacts, --all, --output, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\generated\resources, --existing, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\main\resources]
-[05Nov2025 19:03:36.024] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.0, for MC 1.21.1 with MCP 20240808.132146
-[05Nov2025 19:03:36.024] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.0 Initialized
-[05Nov2025 19:03:36.050] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
-[05Nov2025 19:03:36.293] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [ancientartifacts]
-[05Nov2025 19:03:36.365] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Brandon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
-[05Nov2025 19:03:36.366] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Brandon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
-[05Nov2025 19:03:36.490] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[05Nov2025 19:03:36.667] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 177 ms
-[05Nov2025 19:03:36.668] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id ancientartifacts
-[05Nov2025 19:03:36.675] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id ancientartifacts finished after 6 ms
-[05Nov2025 19:03:36.675] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id ancientartifacts
-[05Nov2025 19:03:36.676] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id ancientartifacts finished after 0 ms
-[05Nov2025 19:03:36.676] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: ancientartifacts
-[05Nov2025 19:03:36.684] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: ancientartifacts finished after 8 ms
-[05Nov2025 19:03:36.684] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: ancientartifacts
-[05Nov2025 19:03:36.768] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: ancientartifacts finished after 83 ms
-[05Nov2025 19:03:36.768] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 278 ms
-[05Nov2025 19:03:36.773] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 27, old count: 7, new count: 28, removed stale: 0, written: 20
+[05Nov2025 23:56:04.171] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\Brandon\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, ancientartifacts, --all, --output, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\generated\resources, --existing, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\main\resources]
+[05Nov2025 23:56:04.174] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.9+7-LTS-338
+[05Nov2025 23:56:04.174] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.9 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[05Nov2025 23:56:04.289] [main/WARN] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Configuration file G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\run-data\config\fml.toml is not correct. Correcting
+[05Nov2025 23:56:04.291] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
+[05Nov2025 23:56:04.291] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowLogHelpMessage] was corrected from null to true
+[05Nov2025 23:56:04.291] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSquir] was corrected from null to false
+[05Nov2025 23:56:04.291] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowShowCPU] was corrected from null to false
+[05Nov2025 23:56:04.303] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
+[05Nov2025 23:56:04.409] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/Brandon/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
+[05Nov2025 23:56:05.207] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[05Nov2025 23:56:06.098] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\Brandon\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, ancientartifacts, --all, --output, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\generated\resources, --existing, G:\New folder\Work\Experimental\Ancient_Artifacts_Forge\src\main\resources]
+[05Nov2025 23:56:10.921] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.0, for MC 1.21.1 with MCP 20240808.132146
+[05Nov2025 23:56:10.921] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.0 Initialized
+[05Nov2025 23:56:10.962] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
+[05Nov2025 23:56:18.549] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [ancientartifacts]
+[05Nov2025 23:56:18.612] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Brandon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
+[05Nov2025 23:56:18.612] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Brandon/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
+[05Nov2025 23:56:18.773] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[05Nov2025 23:56:18.913] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 138 ms
+[05Nov2025 23:56:18.913] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id ancientartifacts
+[05Nov2025 23:56:18.921] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id ancientartifacts finished after 7 ms
+[05Nov2025 23:56:18.921] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id ancientartifacts
+[05Nov2025 23:56:18.921] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id ancientartifacts finished after 0 ms
+[05Nov2025 23:56:18.921] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: ancientartifacts
+[05Nov2025 23:56:18.928] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: ancientartifacts finished after 6 ms
+[05Nov2025 23:56:18.928] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: ancientartifacts
+[05Nov2025 23:56:19.009] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: ancientartifacts finished after 81 ms
+[05Nov2025 23:56:19.010] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Advancements
+[05Nov2025 23:56:19.049] [main/INFO] [net.minecraft.data.DataGenerator/]: Advancements finished after 39 ms
+[05Nov2025 23:56:19.050] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 276 ms
+[05Nov2025 23:56:19.052] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 33, old count: 33, new count: 34, removed stale: 0, written: 0

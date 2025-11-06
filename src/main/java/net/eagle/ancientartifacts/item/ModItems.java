@@ -1,6 +1,7 @@
 package net.eagle.ancientartifacts.item;
 
 import net.eagle.ancientartifacts.AncientArtifacts;
+import net.eagle.ancientartifacts.item.custom.*;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,7 +13,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, AncientArtifacts.MOD_ID);
 
     public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
-            () -> new Item(new Item.Properties()));
+            () -> new WardensHeart(new Item.Properties()));
 
     public static final RegistryObject<Item> ENDER_ROD = ITEMS.register("ender_rod",
             () -> new Item(new Item.Properties()));
@@ -42,22 +43,22 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> EVOKER_KEY = ITEMS.register("evoker_key",
-            () -> new Item(new Item.Properties()));
+            () -> new EvokerKey(new Item.Properties()));
 
     public static final RegistryObject<Item> ELDER_GUARDIAN_SCALES = ITEMS.register("elder_guardian_scales",
-            () -> new Item(new Item.Properties()));
+            () -> new ElderGuardianScales(new Item.Properties()));
 
     public static final RegistryObject<Item> END_STAFF = ITEMS.register("end_staff",
-            () -> new Item(new Item.Properties()));
+            () -> new EndStaff(new Item.Properties()));
 
     public static final RegistryObject<Item> ANKH_PENDANT = ITEMS.register("ankh_pendant",
-            () -> new Item(new Item.Properties()));
+            () -> new AnkhPendant(new Item.Properties()));
 
     public static final RegistryObject<Item> ORB_INFINIUM = ITEMS.register("orb_infinium",
-            () -> new Item(new Item.Properties()));
+            () -> new OrbInfinium(new Item.Properties()));
 
     public static final RegistryObject<Item> DRAGON_FOSSIL = ITEMS.register("dragon_fossil",
-            () -> new Item(new Item.Properties()));
+            () -> new DragonFossil(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
