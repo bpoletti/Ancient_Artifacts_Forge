@@ -1,0 +1,31 @@
+{
+  "entries": [
+    "ancientartifacts:village_temple_order",
+    "ancientartifacts:village_house_order_taiga",
+    "ancientartifacts:village_mason_order",
+    "ancientartifacts:village_house_order_plains",
+    "ancientartifacts:mineshaft_dragon_fossil",
+    "ancientartifacts:village_house_order_savanna",
+    "ancientartifacts:dungeon_dragon_pedestal",
+    "ancientartifacts:woodland_mansion_evoker_key",
+    "ancientartifacts:nether_bridge_nender_brick",
+    "ancientartifacts:village_armorer_order",
+    "ancientartifacts:bastion_plate_treasure",
+    "ancientartifacts:village_house_order_desert",
+    "ancientartifacts:warden_heart",
+    "ancientartifacts:desert_pyramid_ankh",
+    "ancientartifacts:igloo_black_ice",
+    "ancientartifacts:bastion_plate_other",
+    "ancientartifacts:pillager_outpost_chaos_totem",
+    "ancientartifacts:stronghold_corridor_ender_rod",
+    "ancientartifacts:ruined_portal_nether_grass",
+    "ancientartifacts:village_toolsmith_order",
+    "ancientartifacts:village_weaponsmith_order",
+    "ancientartifacts:evoker_key",
+    "ancientartifacts:elder_guardian_scales",
+    "ancientartifacts:village_house_order_snowy",
+    "ancientartifacts:bastion_plate_stable",
+    "ancientartifacts:jungle_temple_idol"
+  ],
+  "replace": false
+}

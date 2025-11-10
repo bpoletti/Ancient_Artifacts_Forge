@@ -34,6 +34,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.ENDER_ROD.get());
                         output.accept(ModItems.PEARLESCENT_FIREFLY_BUD.get());
                         output.accept(ModItems.OCHRE_FIREFLY_BUD.get());
+                        output.accept(ModItems.ELDER_GUARDIAN_SCALES.get());
                         output.accept(ModItems.VERDANT_FIREFLY_BUD.get());
                         output.accept(ModItems.MYCELIUM_DUST.get());
                         output.accept(ModItems.NETHER_GRASS.get());

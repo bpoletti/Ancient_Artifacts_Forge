@@ -19,24 +19,33 @@ public class BetterIglooMixin {
     private static final ResourceLocation MIDDLE = ResourceLocation.withDefaultNamespace("igloo/middle");
     private static final ResourceLocation BOTTOM = ResourceLocation.withDefaultNamespace("igloo/bottom");
 
-    @Inject(method = "addPieces", at = @At("HEAD"), cancellable = true)
-    private static void addPieces(StructureTemplateManager templateManager,
-                                  BlockPos pos,
-                                  Rotation rotation,
-                                  StructurePieceAccessor accessor,
-                                  RandomSource random,
-                                  CallbackInfo ci) {
-        // ~90% chance to generate a basement with random height (4..11 segments)
-        if (random.nextDouble() < 0.9) {
-            int i = random.nextInt(8) + 4; // 4..11
-            accessor.addPiece(new IglooPieces.IglooPiece(templateManager, BOTTOM, pos, rotation, i * 3));
-            for (int j = 0; j < i - 1; ++j) {
-                accessor.addPiece(new IglooPieces.IglooPiece(templateManager, MIDDLE, pos, rotation, j * 3));
+    @Inject(
+            method =
+                    "addPieces(Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;" +
+                            "Lnet/minecraft/core/BlockPos;" +
+                            "Lnet/minecraft/world/level/block/Rotation;" +
+                            "Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;" +
+                            "Lnet/minecraft/util/RandomSource;)V",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private static void ancientartifacts$heavierBasements(StructureTemplateManager templates,
+                                                          BlockPos pos,
+                                                          Rotation rot,
+                                                          StructurePieceAccessor pieces,
+                                                          RandomSource rnd,
+                                                          CallbackInfo ci) {
+        // ~90% chance: add basement stack first
+        if (rnd.nextDouble() < 0.9) {
+            int sections = rnd.nextInt(8) + 4; // 4..11
+            pieces.addPiece(new IglooPieces.IglooPiece(templates, BOTTOM, pos, rot, sections * 3));
+            for (int i = 0; i < sections - 1; ++i) {
+                pieces.addPiece(new IglooPieces.IglooPiece(templates, MIDDLE, pos, rot, i * 3));
             }
         }
 
         // Always add the top at offset 0
-        accessor.addPiece(new IglooPieces.IglooPiece(templateManager, TOP, pos, rotation, 0));
+        pieces.addPiece(new IglooPieces.IglooPiece(templates, TOP, pos, rot, 0));
 
         ci.cancel();
     }

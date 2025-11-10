@@ -1,0 +1,16 @@
+{
+  "type": "ancientartifacts:add_item",
+  "chance": 1.0,
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/evoker"
+    }
+  ],
+  "max": 1,
+  "min": 1,
+  "stack": {
+    "count": 1,
+    "id": "ancientartifacts:evoker_key"
+  }
+}

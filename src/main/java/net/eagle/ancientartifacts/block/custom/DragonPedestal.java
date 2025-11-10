@@ -116,50 +116,71 @@ public class DragonPedestal extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        BlockPos pos = ctx.getClickedPos();
         Level level = ctx.getLevel();
-        if (pos.getY() >= level.getMaxBuildHeight() - 1) return null;
-        if (!level.getBlockState(pos.above()).canBeReplaced(ctx)) return null;
+        BlockPos pos = ctx.getClickedPos();
 
-        return this.defaultBlockState()
-                .setValue(FACING, ctx.getHorizontalDirection().getOpposite())
-                .setValue(HALF, DoubleBlockHalf.LOWER);
+        // 1) Prefer the gilded-merge path FIRST
+        if (pos.getY() - 1 >= level.getMinBuildHeight()
+                && level.getBlockState(pos.below()).is(ModBlocks.GILDED_PLATE.get())
+                && level.getBlockState(pos).canBeReplaced(ctx)) {
+            return this.defaultBlockState()
+                    .setValue(FACING, ctx.getHorizontalDirection().getOpposite())
+                    .setValue(HALF, DoubleBlockHalf.LOWER)
+                    .setValue(GILDED, true)
+                    .setValue(FOSSIL_HEAD, false)
+                    .setValue(HEART_SEA, false)
+                    .setValue(ORB_INFINIUM, false)
+                    .setValue(END_READY, false);
+        }
+
+        boolean canPlaceUpper = pos.getY() < level.getMaxBuildHeight() - 1
+                && level.getBlockState(pos.above()).canBeReplaced(ctx);
+
+        if (canPlaceUpper) {
+            return this.defaultBlockState()
+                    .setValue(FACING, ctx.getHorizontalDirection().getOpposite())
+                    .setValue(HALF, DoubleBlockHalf.LOWER)
+                    .setValue(GILDED, false)
+                    .setValue(FOSSIL_HEAD, false)
+                    .setValue(HEART_SEA, false)
+                    .setValue(ORB_INFINIUM, false)
+                    .setValue(END_READY, false);
+        }
+        return null;
     }
+
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            BlockPos up = pos.above();
-            if (level.getBlockState(up).canBeReplaced()) {
-                level.setBlock(up, state.setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-            }
+        if (state.getValue(HALF) == DoubleBlockHalf.LOWER && !state.getValue(GILDED)) {
+            // normal case: spawn an upper half one block above
+            level.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
         }
     }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+            // Upper only survives if the block below is our LOWER half
             BlockState below = level.getBlockState(pos.below());
             return below.is(this) && below.getValue(HALF) == DoubleBlockHalf.LOWER;
-        } else {
-            BlockState above = level.getBlockState(pos.above());
-            return above.is(this) && above.getValue(HALF) == DoubleBlockHalf.UPPER;
         }
+        // LOWER: always OK to exist (upper will be placed right after)
+        return true;
     }
 
-    @Override
     public BlockState updateShape(BlockState state, Direction dir, BlockState neighbor, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         DoubleBlockHalf half = state.getValue(HALF);
-        if (dir == Direction.UP && half == DoubleBlockHalf.LOWER) {
-            if (!neighbor.is(this) || neighbor.getValue(HALF) != DoubleBlockHalf.UPPER) {
-                return Blocks.AIR.defaultBlockState();
-            }
-        }
-        if (dir == Direction.DOWN && half == DoubleBlockHalf.UPPER) {
+
+        if (half == DoubleBlockHalf.UPPER && dir == Direction.DOWN) {
             if (!neighbor.is(this) || neighbor.getValue(HALF) != DoubleBlockHalf.LOWER) {
                 return Blocks.AIR.defaultBlockState();
             }
         }
+        if (half == DoubleBlockHalf.LOWER && dir == Direction.UP) {
+            return state;
+        }
+
         return super.updateShape(state, dir, neighbor, level, pos, neighborPos);
     }
 
@@ -168,14 +189,16 @@ public class DragonPedestal extends BaseEntityBlock {
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState old, boolean moving) {
         super.onPlace(state, level, pos, old, moving);
         if (level.isClientSide) return;
-        if (state.getValue(HALF) == DoubleBlockHalf.UPPER) return;
 
-        Block down = level.getBlockState(pos.below()).getBlock();
-        if (down == ModBlocks.GILDED_PLATE.get() && !state.getValue(GILDED)) {
-            // move LOWER to the plate, then set UPPER at current pos
-            level.removeBlock(pos, false);
-            level.setBlock(pos.below(), state.setValue(HALF, DoubleBlockHalf.LOWER).setValue(GILDED, true), Block.UPDATE_ALL);
-            level.setBlock(pos,        state.setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
+        if (state.getValue(HALF) == DoubleBlockHalf.LOWER && state.getValue(GILDED)) {
+            BlockPos basePos = pos.below();
+            if (level.getBlockState(basePos).is(ModBlocks.GILDED_PLATE.get())) {
+                // remove temp lower at pos
+                level.removeBlock(pos, false);
+                // place LOWER on the plate, and UPPER at original pos
+                level.setBlock(basePos, state.setValue(HALF, DoubleBlockHalf.LOWER), Block.UPDATE_ALL);
+                level.setBlock(pos,      state.setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
+            }
         }
     }
 
@@ -184,53 +207,70 @@ public class DragonPedestal extends BaseEntityBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
                                               BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        // Always target the LOWER/base half
+        BlockPos basePos = (state.getValue(HALF) == DoubleBlockHalf.UPPER) ? pos.below() : pos;
+        BlockState base = level.getBlockState(basePos);
+        if (!base.is(this) || base.getValue(HALF) != DoubleBlockHalf.LOWER) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        // Helper to keep halves in sync
+        java.util.function.Function<BlockState, ItemInteractionResult> apply = newLower -> {
+            BlockState lower = newLower.setValue(HALF, DoubleBlockHalf.LOWER);
+            BlockState upper = lower.setValue(HALF, DoubleBlockHalf.UPPER);
+            level.setBlock(basePos, lower, Block.UPDATE_ALL);
+            level.setBlock(basePos.above(), upper, Block.UPDATE_ALL);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        };
+
         final String id = String.valueOf(ForgeRegistries.ITEMS.getKey(stack.getItem()));
 
         switch (id) {
             case "ancientartifacts:end_staff" -> {
-                if (!state.getValue(END_READY) && state.getValue(ORB_INFINIUM)) {
-                    level.setBlock(pos, state.setValue(END_READY, true).setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEvents.ENDER_DRAGON_GROWL, SoundSource.HOSTILE, 0.2f, 0.9f);
-                    level.playSound(null, pos, SoundEvents.PLAYER_LEVELUP,    SoundSource.NEUTRAL, 0.2f, 1.0f);
+                if (!base.getValue(END_READY) && base.getValue(ORB_INFINIUM)) {
+                    ItemInteractionResult res = apply.apply(base.setValue(END_READY, true));
+                    level.playSound(null, basePos, SoundEvents.ENDER_DRAGON_GROWL, SoundSource.HOSTILE, 0.2f, 0.9f);
+                    level.playSound(null, basePos, SoundEvents.PLAYER_LEVELUP,    SoundSource.NEUTRAL, 0.2f, 1.0f);
                     if (!player.isCreative()) {
                         player.displayClientMessage(net.minecraft.network.chat.Component.literal("End Gateway is now Unlocked!"), true);
                     }
-                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, basePos);
+                    return res;
                 }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             case "ancientartifacts:orb_infinium" -> {
-                if (!state.getValue(ORB_INFINIUM) && state.getValue(HEART_SEA)) {
-                    level.setBlock(pos, state.setValue(ORB_INFINIUM, true).setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.AMBIENT, 1.0f, 0.6f);
+                if (!base.getValue(ORB_INFINIUM) && base.getValue(HEART_SEA)) {
+                    ItemInteractionResult res = apply.apply(base.setValue(ORB_INFINIUM, true));
+                    level.playSound(null, basePos, SoundEvents.BEACON_ACTIVATE, SoundSource.AMBIENT, 1.0f, 0.6f);
                     if (!player.isCreative()) stack.shrink(1);
-                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, basePos);
+                    return res;
                 }
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION; // let vanilla try
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             case "minecraft:heart_of_the_sea" -> {
-                if (!state.getValue(HEART_SEA) && state.getValue(FOSSIL_HEAD)) {
-                    level.setBlock(pos, state.setValue(HEART_SEA, true).setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEvents.CONDUIT_ACTIVATE, SoundSource.BLOCKS, 1.0f, 0.4f);
+                if (!base.getValue(HEART_SEA) && base.getValue(FOSSIL_HEAD)) {
+                    ItemInteractionResult res = apply.apply(base.setValue(HEART_SEA, true));
+                    level.playSound(null, basePos, SoundEvents.CONDUIT_ACTIVATE, SoundSource.BLOCKS, 1.0f, 0.4f);
                     if (!player.isCreative()) stack.shrink(1);
-                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, basePos);
+                    return res;
                 }
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             case "ancientartifacts:dragon_fossil" -> {
-                if (!state.getValue(FOSSIL_HEAD)
-                        && state.getValue(GILDED)
-                        && !state.getValue(HEART_SEA)) {
-                    level.setBlock(pos.above(), state.setValue(FOSSIL_HEAD, true).setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEvents.BONE_BLOCK_PLACE, SoundSource.BLOCKS, 0.8f, 0.3f);
+                if (!base.getValue(FOSSIL_HEAD)
+                        && base.getValue(GILDED)
+                        && !base.getValue(HEART_SEA)) {
+                    ItemInteractionResult res = apply.apply(base.setValue(FOSSIL_HEAD, true));
+                    level.playSound(null, basePos, SoundEvents.BONE_BLOCK_PLACE, SoundSource.BLOCKS, 0.8f, 0.3f);
                     if (!player.isCreative()) stack.shrink(1);
-                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                    level.gameEvent(player, GameEvent.BLOCK_CHANGE, basePos);
+                    return res;
                 }
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
@@ -240,6 +280,7 @@ public class DragonPedestal extends BaseEntityBlock {
             }
         }
     }
+
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,

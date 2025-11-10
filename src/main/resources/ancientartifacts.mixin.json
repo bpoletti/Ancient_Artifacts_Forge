@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.eagle.ancientartifacts.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "ancientartifacts.refmap.json",
+  "mixins": [
+    "BetterIglooMixin",
+    "CopperToRedstoneWire",
+    "EyeEnderItemMixin"
+  ],
+  "client": [],
+  "server": []
+}

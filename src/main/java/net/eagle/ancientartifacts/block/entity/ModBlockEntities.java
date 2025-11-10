@@ -3,6 +3,7 @@ package net.eagle.ancientartifacts.block.entity;
 import net.eagle.ancientartifacts.AncientArtifacts; // your MOD_ID holder
 import net.eagle.ancientartifacts.block.ModBlocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -18,4 +19,7 @@ public class ModBlockEntities {
                             ModBlocks.DRAGON_PEDESTAL.get()   // the block(s) this BE attaches to
                     ).build(null)
             );
+    public static void register(IEventBus eventBus) {
+        BLOCK_ENTITIES.register(eventBus);
+    }
 }

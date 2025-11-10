@@ -13,25 +13,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RedStoneWireBlock.class)
 public abstract class CopperToRedstoneWire {
 
-    /**
-     * Forge/Mojang names (1.21.1):
-     *  - Class: net.minecraft.world.level.block.RedStoneWireBlock
-     *  - Method: shouldConnectTo(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
-     *
-     * Inject at HEAD; if the neighbor is our CopperWire, we decide connectivity and short-circuit.
-     * Otherwise, let vanilla continue.
-     */
     @Inject(
             method = "shouldConnectTo(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z",
-            at = @At("HEAD"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;isSignalSource()Z"
+            ),
             cancellable = true
     )
-    private static void ancientartifacts$connectsToCopper(BlockState state, Direction dir, CallbackInfoReturnable<Boolean> cir) {
+    private static void shouldConnectTo(BlockState state, Direction dir,
+                                        CallbackInfoReturnable<Boolean> cir) {
         if (dir != null && state.is(ModBlocks.COPPER_WIRE.get())) {
-            // Only connect if the rod’s facing matches the queried side.
-            // (Adjust this condition if your CopperWire has a different connectivity rule.)
-            boolean connect = state.getValue(CopperWire.FACING) == dir;
-            cir.setReturnValue(connect);
+            cir.setReturnValue(state.getValue(CopperWire.FACING) == dir);
         }
     }
 }

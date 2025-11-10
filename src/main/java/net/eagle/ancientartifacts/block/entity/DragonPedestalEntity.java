@@ -14,5 +14,4 @@ public class DragonPedestalEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, DragonPedestalEntity be) {
         if (level.isClientSide) return;
     }
-
 }
