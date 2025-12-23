@@ -75,6 +75,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         fireflyOrbPermutations(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.NENDER_BRICK.get())
+                .pattern("NW ")
+                .pattern("WN ")
+                .pattern("   ")
+                .define('N', Items.NETHER_BRICK)
+                .unlockedBy(getHasName(Items.NETHER_BRICK), has(Items.NETHER_BRICK))
+                .define('W', Items.WARPED_FUNGUS)
+                .unlockedBy(getHasName(Items.WARPED_FUNGUS), has(Items.WARPED_FUNGUS))
+                .save(pRecipeOutput);
+
     }
 
     private void smelt(RecipeOutput out, ItemLike input, ItemLike outputItem, String fileName) {
